@@ -59,6 +59,7 @@ def postBook(request):
     serializer.save()
     return Response({"message" : 'Book added successfully!', 'data' : serializer.data}, status=201)
 
+
 @api_view(['GET'])
 def getAuthors(request):
     Authors = Author.objects.all()

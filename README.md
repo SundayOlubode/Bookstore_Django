@@ -14,8 +14,6 @@ A Bookstore API to obtain information about authors and their books
 - Login (Session-based).
 - Get all books.
 - Create a new book.
-- Update a book.
-- Delete a book.
   
 
 ## Author
