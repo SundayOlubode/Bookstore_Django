@@ -29,10 +29,11 @@ def login(request):
 
     serialized = AuthorSerializer(author)
     author_data = serialized.data
+    author_data['password'] = None
 
     custom_login(request, author_data)
     
-    return Response({'success': 'Login successful!', "data": author_data}, status=200)
+    return Response({'message': 'Login successful!', "data": author_data}, status=200)
 
 
 @api_view(['GET'])
@@ -40,7 +41,7 @@ def getBooks(request):
     Books = Book.objects.all()
     serialized = BookSerializer(Books, many=True)
 
-    return Response(status=200, data=serialized.data)
+    return Response({'message': 'Get All Books Successful!', "data": serialized.data}, status=200)
 
 @api_view(['POST'])
 def postBook(request):
@@ -56,7 +57,7 @@ def postBook(request):
         return Response(status=400, data='Please input valid book data')
     
     serializer.save()
-    return Response(status=201, data='Book added successfully!')
+    return Response({"message" : 'Book added successfully!', 'data' : serializer.data}, status=201)
 
 @api_view(['GET'])
 def getAuthors(request):
@@ -71,7 +72,11 @@ def register(request):
     if not serializer.is_valid():
         return Response(status=400, data='Please input valid data')
     serializer.save()
-    return Response(status=201, data='Author registered successfully!')
+
+    author_data = serializer.data
+    author_data['password'] = None
+
+    return Response({"message" : "Author registered successfully!", 'data' : author_data}, status=201)
 
 def custom_login(request, author):
     request.session['author_id'] = author['id']
