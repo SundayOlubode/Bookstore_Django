@@ -8,6 +8,10 @@ A Bookstore API to obtain information about authors and their books
 
 ---
 
+## How To Test:
+- You can test the API by making request to the routes below using *POSTMAN*
+- Live Link: https://bookstore-1tb0.onrender.com
+
 ## Basic Features
 
 - Author's Registration.
